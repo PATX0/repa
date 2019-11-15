@@ -4,10 +4,10 @@ const getUsers = () => {
     return Promise.resolve(users);
 };
 
-const getUser = (id) => {
-    const user = users.find(user => user.id === id);
-    if (user !== null) {
-        return Promise.resolve(user);
+getUser = (id) => {
+    const u = users.find(user => user.id === id);
+    if (u !== null) {
+        return Promise.resolve(u);
     } else {
         return Promise.reject();
     }
