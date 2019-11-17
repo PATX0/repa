@@ -1,8 +1,6 @@
-import dotenv from 'dotenv'
+require('dotenv').config();
 
-dotenv.config();
-
-export default config =  
+module.exports =  
 {
   "development": {
     "username": process.env.DB_USER_DEV,
@@ -23,7 +21,7 @@ export default config =
   "production": {
     "username": process.env.DB_USER,
     "password": process.env.DB_PASS,
-    "database": process.env.DB_NAME,
+    "database": process.env.DB_USER,
     "host": process.env.DB_HOST,
     "dialect": "postgres",
     "operatorsAliases": false
