@@ -6,9 +6,8 @@ export default class Response {
         this.message = null;
     }
 
-    setSuccess(statusCode, message, data) {
+    setSuccess(statusCode, data) {
         this.statusCode = statusCode;
-        this.message = message;
         this.data = data;
         this.type = 'success';
     }

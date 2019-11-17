@@ -1,7 +1,7 @@
-import database from './models';
+import database from '../models';
 
 class UserService {
-    static async getAllUsers() {
+    static async getAll() {
         try {
             return await database.User.findAll();
         } catch (error) {
@@ -9,7 +9,7 @@ class UserService {
         }
     }
 
-    static async addUser(user) {
+    static async add(user) {
         try {
             return await database.User.create(user);
         } catch(error) {
@@ -17,7 +17,7 @@ class UserService {
         }
     }
 
-    static async updateUser(id, user) {
+    static async update(id, user) {
         try {
             const foundUser = await database.User.findOne({
                 where: { id: Number(id) }
@@ -34,7 +34,7 @@ class UserService {
         }
     }
 
-    static async getUser(id) {
+    static async getOne(id) {
         try {
             const user = await database.User.findOne({
                 where: { id: Number(id) }
@@ -46,7 +46,7 @@ class UserService {
         }
     }
 
-    static async deleteUser(id) {
+    static async delete(id) {
         try {
             const user = await database.User.findOne({
                 where: { id: Number(id) }
