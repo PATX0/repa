@@ -4,14 +4,7 @@ const getUsers = () => {
     return Promise.resolve(users);
 };
 
-getUser = (id) => {
-    const u = users.find(user => user.id === id);
-    if (u !== null) {
-        return Promise.resolve(u);
-    } else {
-        return Promise.reject();
-    }
-};
+const getUser = (id) => {};
 
 const insertUser = (payload) => {
     users.append(payload);
