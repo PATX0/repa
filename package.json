@@ -4,8 +4,11 @@
   "description": "Reading Patterns (REPA) API",
   "main": "app.js",
   "scripts": {
+    "clean": "rm -rf dist && mkdir dist",
     "dev": "nodemon --exec babel-node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && babel src --out-dir dist",
+    "start": "npm run build && node dist/app.js"
   },
   "author": "",
   "license": "ISC",

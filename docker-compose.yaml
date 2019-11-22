@@ -14,3 +14,20 @@ services:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=repa_api_dev
       - PGDATA=/pgdata
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    expose:
+      - "8080"
+      - "8081"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    links:
+      - "db:database"

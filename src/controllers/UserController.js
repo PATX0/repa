@@ -10,7 +10,7 @@ class UserController {
             response.setSuccess(200, users);
             return response.send(res);
         } catch(error) {
-            response.setError(400, error);
+            response.setError(400, error.message);
             return response.send(res);
         }
     }
