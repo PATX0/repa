@@ -1,10 +1,11 @@
+
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
-    username: DataTypes.STRING,
-    password_hash: DataTypes.STRING
+    username: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.session);
   };
   return User;
 };
