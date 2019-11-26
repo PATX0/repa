@@ -1,9 +1,9 @@
 import database from '../models';
 
 class SessionService {
-    static async getAll() {
+    static async getAll(user_id) {
         try {
-            return await database.session.findAll();
+            return await database.session.findAll( { where: { user_id: Number(user_id) } });
         } catch (error) {
             throw error;
         }
@@ -48,7 +48,7 @@ class SessionService {
 
     static async delete(id) {
         try {
-            const user = await database.session.findOne({
+            const session = await database.session.findOne({
                 where: { id: Number(id) }
             });
 
