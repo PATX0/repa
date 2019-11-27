@@ -59,7 +59,7 @@ class SessionController {
         if(value === 2 && sessionId) {
             try {
                 const foundSession = await SessionService.getOne(sessionId);
-                console.log(foundSession);
+
                 let now = new Date();
                 const session = {
                     userId: foundSession.userId,
@@ -70,7 +70,6 @@ class SessionController {
                 }
 
                 const createdSession = await SessionService.update(sessionId, session);
-                console.log(createdSession);
                 response.setSuccess(201, createdSession);
                 return response.send(res);
             } catch(error) {
@@ -79,6 +78,9 @@ class SessionController {
                 return response.send(res);
             }
         }
+
+        response.setError(400, 'Wrong value');
+        return response.send(res);
     }
 }
 
