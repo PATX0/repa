@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import userRoutes from './routes/UserRoutes';
+import sessionRoutes from './routes/SessionRoutes';
 
 config.config();
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/users', userRoutes);
+app.use('/sessions', sessionRoutes);
 
 app.listen(port, () => console.log(`App is running at port ${port}`));
 

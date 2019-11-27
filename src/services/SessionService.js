@@ -1,10 +1,11 @@
 import database from '../models';
 
 class SessionService {
-    static async getAll(user_id) {
+    static async getAll(userId) {
         try {
-            return await database.session.findAll( { where: { user_id: Number(user_id) } });
+            return await database.session.findAll( { where: { userId: Number(userId) } });
         } catch (error) {
+            console.log(error);
             throw error;
         }
     }
