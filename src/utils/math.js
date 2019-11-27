@@ -6,11 +6,13 @@ moment().format();
 function getMinutesRead(sessions) {
     let milliseconds = 0;
     for(let session of sessions) {
-        const end = new moment(session.end);
-        const start = new moment(session.start);
-
-        const time = (end - start);
-        milliseconds += time;
+        if(session.end && session.start) {
+            const end = new moment(session.end);
+            const start = new moment(session.start);
+    
+            const time = (end - start);
+            milliseconds += time;
+        }
     }
 
     var minutes = Math.floor(milliseconds / 60000);
