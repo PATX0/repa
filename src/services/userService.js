@@ -3,7 +3,7 @@ import database from '../models';
 class UserService {
     static async getAll() {
         try {
-            return await database.user.findAll();
+            return await database.user.findAll({ include: [{ all: true }]});
         } catch (error) {
             throw error;
         }
@@ -37,7 +37,8 @@ class UserService {
     static async getOne(id) {
         try {
             const user = await database.user.findOne({
-                where: { id: Number(id) }
+                where: { id: Number(id) },
+                include: [{ all: true }]
             });
 
             return user;

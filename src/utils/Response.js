@@ -19,14 +19,9 @@ export default class Response {
     }
 
     send(res) {
-        const result = {
-            status: this.type,
-            message: this.message,
-            data: this.data
-        };
 
         if (this.type === 'success') {
-            return res.status(this.statusCode).json(result);
+            return res.status(this.statusCode).json({status: this.type, data: this.data});
           }
           return res.status(this.statusCode).json({
             status: this.type,

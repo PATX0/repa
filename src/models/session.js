@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     end: DataTypes.DATE
   }, {});
   session.associate = function(models) {
-    session.hasOne(models.user, {foreignKey: {name: 'userId'}});
+    session.hasOne(models.user, {foreignKey: {name: 'id'}});
   };
   return session;
 };
