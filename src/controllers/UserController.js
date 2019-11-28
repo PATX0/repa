@@ -50,6 +50,7 @@ class UserController {
     static async add(req, res) {
         if (!req.body.username) {
             response.setError(400, 'Please add all details');
+            console.log("username");
             return response.send(res);
         }
         const user = req.body;

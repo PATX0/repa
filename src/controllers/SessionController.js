@@ -21,11 +21,12 @@ class SessionController {
     }
 
     static async add(req, res) {
-        let userId = req.body.user_id;
-        let value = req.body.value;
-        let sessionId = req.body.session_id;
+        let userId = Number(req.body.user_id);
+        let value = Number(req.body.value);
+        let sessionId = Number(req.body.session_id);
         
         if (!userId || !value) {
+            console.log("VALUE IS WRONG");
             response.setError(400, 'Please add all details');
             return response.send(res);
         }
@@ -78,7 +79,9 @@ class SessionController {
                 return response.send(res);
             }
         }
-
+        console.log("ERROR");
+        console.log("userId", userId);
+        console.log("value", value);
         response.setError(400, 'Wrong value');
         return response.send(res);
     }
