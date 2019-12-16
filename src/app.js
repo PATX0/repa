@@ -15,12 +15,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use('/users', userRoutes);
+app.use('/users', userRoutes);
 app.use('/sessions', sessionRoutes);
-app.get('/', function(req, res) {
-    res.send('success');
-});
-
 
 app.listen(port, () => console.log(`App is running at port ${port}`));
 
