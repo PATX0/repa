@@ -28,9 +28,13 @@ function getStreak(sessions) {
     let daysRead = getDaysRead(sessions);
     let today = moment();
 
+    if (daysRead.includes(today.startOf('day').format('LL'))) {
+        streak += 1;
+    }
+
     for (let [i, day] in daysRead) {
 
-        if (daysRead.includes(moment(today).subtract(i, 'days').startOf('day').format('LL'))) {
+        if (daysRead.includes(moment(today).subtract(Number(i) + 1, 'days').startOf('day').format('LL'))) {
             streak += 1;
         } else {
             break;

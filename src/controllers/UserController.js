@@ -1,3 +1,5 @@
+let moment = require('moment');
+moment().format();
 import UserService from '../services/UserService';
 import Response from '../utils/Response';
 import { getMinutesRead, getDaysRead, getStreak } from '../utils/math';
@@ -36,7 +38,8 @@ class UserController {
                 username: user.username,
                 time_read: minutes,
                 days_read: daysRead,
-                streak: streak
+                streak: streak,
+                today: moment().startOf('day').format('LL')
             }
 
             response.setSuccess(200, resp);
