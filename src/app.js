@@ -3,7 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import cors from 'cors';
-// import userRoutes from './routes/UserRoutes';
+import userRoutes from './routes/UserRoutes';
 import sessionRoutes from './routes/SessionRoutes';
 
 config.config();
