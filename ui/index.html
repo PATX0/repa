@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>REPA</title>
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div class="main" id="app" v-if="data.username">
+  <h1>R E P A</h1>
+  <br>
+  <h1>Welcome {{ data.username }}</h1>
+  <div class="stats">
+    <div class="stats-daily">
+      <h2>Daily Streak</h2>
+      <h1>{{ data.streak }}</h1>
+    </div>
+    <div class="stats-total">
+      <h2>Total minutes read</h2>
+      <h1>{{ data.time_read.split(':')[0] }}</h1>
+    </div>
+  </div>
+  <div class="heatmap">
+    <div class="heatmap-days">
+      <p class="heatmap-day" v-for="(day,index) in months[1].days">
+        {{ index + 1 }}
+      </p>
+    </div>
+    <div class="heatmap-months">
+      <p class="heatmap-month" v-for="month in months">
+        {{ month.name }}
+      </p>
+    </div>
+    <div class="heatmap-row" v-for="(month, index1) in months">
+      <div class="heatmap-square" v-for="(day, index2) in month.days">
+        <!--<div class="heatmap-small-square" v-if='amIRead(month,index2 + 1)'></div>-->
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24" v-if='amIRead(month,index2 + 1)'>
+          <path fill="#2E2E3A" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
+        </svg>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24" v-if='amIToday(month,index2 + 1)'>
+          <path fill="#2E2E3A"
+            d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="badge-container">
+    <div class="badge" :class="{ 'badge--locked': data.days_read.length == 0 }">
+      <img src="https://i.imgur.com/uvYf8zH.png" class="badge-image">
+      <p class="badge-title"> First reading session</p>
+      <img src="https://i.imgur.com/aWC4BFD.png" class="badge-star badge-star--1 rotate" v-if='data.days_read.length > 0'>
+      <img src="https://i.imgur.com/UU45YsH.png" class="badge-star badge-star--2 rotate" v-if='data.days_read.length > 0'>
+    </div>
+    <div class="badge" :class="{ 'badge--locked': data.streak < 3 }">
+      <img src="https://i.imgur.com/1tYNpnI.png" class="badge-image">
+      <p class="badge-title"> 3 day streak</p>
+      <img src="https://i.imgur.com/aWC4BFD.png" class="badge-star badge-star--1 rotate" v-if='data.streak >= 3'>
+      <img src="https://i.imgur.com/UU45YsH.png" class="badge-star badge-star--2 rotate" v-if='data.streak >= 3'>
+    </div>
+    <div class="badge" :class="{ 'badge--locked': data.streak < 5 }">
+      <img src="https://i.imgur.com/LnszrQt.png" class="badge-image">
+      <p class="badge-title"> 5 day streak</p>
+      <img src="https://i.imgur.com/aWC4BFD.png" class="badge-star badge-star--1 rotate" v-if='data.streak >= 5'>
+      <img src="https://i.imgur.com/UU45YsH.png" class="badge-star badge-star--2 rotate" v-if='data.streak >= 5'>
+    </div>
+    <div class="badge" :class="{ 'badge--locked': data.streak < 10 }">
+      <img src="https://i.imgur.com/C8yoo9J.png" class="badge-image">
+      <p class="badge-title"> 10 day streak</p>
+      <img src="https://i.imgur.com/aWC4BFD.png" class="badge-star badge-star--1 rotate" v-if='data.streak >= 10'>
+      <img src="https://i.imgur.com/UU45YsH.png" class="badge-star badge-star--2 rotate" v-if='data.streak >= 10'>
+    </div>
+    <div class="badge" :class="{ 'badge--locked': data.days_read.length < 15 }">
+      <img src="https://i.imgur.com/gFkbmar.png" class="badge-image">
+      <p class="badge-title"> 15 total sessions</p>
+      <img src="https://i.imgur.com/aWC4BFD.png" class="badge-star badge-star--1 rotate" v-if='data.days_read.length >= 15'>
+      <img src="https://i.imgur.com/UU45YsH.png" class="badge-star badge-star--2 rotate" v-if='data.days_read.length >= 15'>
+    </div>
+    <div class="badge" :class="{ 'badge--locked': data.days_read.length < 50 }">
+      <img src="https://i.imgur.com/LydUuU5.png" class="badge-image">
+      <p class="badge-title"> 50 total sessions</p>
+      <img src="https://i.imgur.com/aWC4BFD.png" class="badge-star badge-star--1 rotate" v-if='data.days_read.length >= 50'>
+      <img src="https://i.imgur.com/UU45YsH.png" class="badge-star badge-star--2 rotate" v-if='data.days_read.length >= 50'>
+    </div>
+  </div>
+    <!--
+    	    -\-
+    	    \-- \-
+    	     \  - -\
+    	      \      \\
+    	       \       \
+    	        \       \\
+    	         \        \\
+    	         \          \\
+    	         \           \\\\
+    	          \            \
+    	           \            \\
+    	           \. .          \\
+    	            \    .       \\
+    	             \      .    \\
+    	              \       .  \\
+    	              \         . \\
+    	              \            <=)
+    	              \            <==)
+    	              \            <=)
+    	               \           .\\                                           _-
+    	               \         .   \\                                        _-//
+    	               \       .     \\                                     _-_/ /
+    	               \ . . .        \\                                 _--_/ _/
+    	                \              \\                              _- _/ _/
+    	                \               \\                      ___-(O) _/ _/
+    	                \                \                  __--  __   /_ /      ***********************************
+    	                \                 \\          ____--__----  /    \_       I AM A MOTHERFUCKING PTERODACTYL
+    	                 \                  \\       -------       /   \_  \_
+    	                  \                   \                  //   // \__ \_   **********************************
+    	                   \                   \\              //   //      \_ \_
+    	                    \                   \\          ///   //          \__-
+    	                    \                -   \\/////////    //
+    	                    \            -         \_         //
+    	                    /        -                      //
+    	                   /     -                       ///
+    	                  /   -                       //
+    	             __--/                         ///
+    	  __________/                            // |
+    	//-_________      ___                ////  |
+    	        ____\__--/                /////    |
+    	   -----______    -/---________////        |
+    	     _______/  --/    \                   |
+    	   /_________-/       \                   |
+    	  //                  \                   /
+    	                       \.                 /
+    	                       \     .            /
+    	                        \       .        /
+    	                       \\           .    /
+    	                        \                /
+    	                        \              __|
+    	                        \              ==/
+    	                        /              //
+    	                        /          .  //
+    	                        /   .  .    //
+    	                       /.           /
+    	                      /            //
+    	                      /           /
+    	                     /          //
+    	                    /         //
+    	                 --/         /
+    	                /          //
+    	            ////         //
+    	         ///_________////
+    	-->
+</div>
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+<script src="app.js"></script>
+
+</html>

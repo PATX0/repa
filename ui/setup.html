@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>REPA</title>
+	<link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Playfair+Display&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<div class="main" id="app">
+		<h1>R E P A</h1>
+		<div class="setup-container">
+			<p>Welcome to our app!</p>
+			<p>Fill in the information below:</p>
+			<br>
+			<br>
+			<div class="setup-inputs">
+				<p>What's your username?</p>
+				<input class="search__input" name="search" type="search" placeholder="Username" autocomplete="off" autocorrect="off"
+					autocapitalize="off" spellcheck="false" v-model='username'>
+				<p class="margin-top">How many minutes are you aiming to read per day?</p>
+				<input class="search__input" name="search" type="search" placeholder="Reading goal (in minutes)" autocomplete="off" autocorrect="off"
+					autocapitalize="off" spellcheck="false" v-model='minutes'>
+					<p class="margin-top">When are you going to read?</p>
+					<input class="search__input" name="search" type="search" placeholder="At night? During the day?" autocomplete="off"
+						autocorrect="off" autocapitalize="off" spellcheck="false" v-model='timeToRead'>
+				<button @click="submitInfo()" class="submit-button bouncy">Let's read!</button>
+			</div>
+		</div>
+
+	</div>
+		<!--
+				-\-
+				\-- \-
+					\  - -\
+					\      \\
+						\       \
+						\       \\
+							\        \\
+							\          \\
+							\           \\\\
+							\            \
+								\            \\
+								\. .          \\
+								\    .       \\
+									\      .    \\
+									\       .  \\
+									\         . \\
+									\            <=)
+									\            <==)
+									\            <=)
+										\           .\\                                           _-
+										\         .   \\                                        _-//
+										\       .     \\                                     _-_/ /
+										\ . . .        \\                                 _--_/ _/
+										\              \\                              _- _/ _/
+										\               \\                      ___-(O) _/ _/
+										\                \                  __--  __   /_ /      ***********************************
+										\                 \\          ____--__----  /    \_       I AM A MOTHERFUCKING PTERODACTYL
+											\                  \\       -------       /   \_  \_
+											\                   \                  //   // \__ \_   **********************************
+												\                   \\              //   //      \_ \_
+												\                   \\          ///   //          \__-
+												\                -   \\/////////    //
+												\            -         \_         //
+												/        -                      //
+												/     -                       ///
+											/   -                       //
+									__--/                         ///
+			__________/                            // |
+		//-_________      ___                ////  |
+						____\__--/                /////    |
+				-----______    -/---________////        |
+					_______/  --/    \                   |
+				/_________-/       \                   |
+			//                  \                   /
+														\.                 /
+														\     .            /
+														\       .        /
+														\\           .    /
+														\                /
+														\              __|
+														\              ==/
+														/              //
+														/          .  //
+														/   .  .    //
+														/.           /
+													/            //
+													/           /
+													/          //
+												/         //
+											--/         /
+										/          //
+								////         //
+							///_________////
+		    	-->
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+<script src="setup.js"></script>
+
+</html>

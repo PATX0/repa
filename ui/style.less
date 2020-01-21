@@ -1,0 +1,100 @@
+body {
+  background-color: #2E2E3A;
+}
+
+.main {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+
+  & h1 {
+    font-family: 'Bebas Neue', cursive;
+    color: #DFDFDF
+  }
+}
+
+.stats {
+  display: flex;
+  width: 100%;
+  max-width: 760px;
+
+  &-total,
+  &-daily {
+    width: 50%;
+    height: 200px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #BC5D2E;
+    }
+    h1 {
+      font-family: 'Bebas Neue', cursive;
+      color: #DFDFDF;
+    }
+
+  }
+}
+
+.heatmap {
+  width: 800px;
+  height: 200px;
+  border: 5px solid #DFDFDF;
+  margin-bottom: 60px;
+}
+
+.badge {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding: 10px;
+  position:relative;
+
+  
+  &-container {
+    max-width: 760px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  &-image {
+    width: 120px;
+    height: 120px;
+    //border: #BC5D2E 5px solid;
+  }
+  &-star {
+    position: absolute;
+    animation:spin 4s linear infinite;
+    
+    &--1 {
+      top: 20px;
+      right: 20px;
+    }
+    
+    &--2 {
+      bottom: 100px;
+      left: 50px;
+    }
+  }
+  &-title {
+    font-family: 'Bebas Neue', cursive;
+    color: #DFDFDF;
+    font-size: 22px;
+    margin-top: 16px;
+  }
+  
+  &--locked {
+    opacity: 0.3;
+  }
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
